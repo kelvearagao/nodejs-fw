@@ -1,38 +1,15 @@
-var http = require('http');
-var util = require('util');
+/**
+ * Constantes
+ *
+ */
+const LIB_PATH = './lib/';
 
-var app = (function() {
-	
-	var middlewere = [];
+/**
+ * Requires
+ *
+ */
+var app  = require(LIB_PATH + 'node-fw');
 
-	var use = function(fn) {
-		middlewere.push(fn);
-	};
-
-	var listen = function(port, address) {
-
-		http.createServer(function(req, res) {
-			console.log(req.url);
-
-			for( var i in middlewere )
-			{
-				console.log('Processando middlewere' + ( parseInt(i) + 1 ) );
-
-				middlewere[i].run(req, res);
-			}
-			
-			console.log('fim');
-			res.end();
-
-		}).listen(port, address);
-	};
-
-	return {
-		use: use,
-		listen: listen,
-		middlewere: middlewere
-	};
-})();
 
 var test1 = function() {
 
@@ -71,7 +48,7 @@ app.use(test1());
 app.use(test2());
 app.use(test3());
 
-app.listen(2000, '127.0.0.1');
+app.listen(3000, '127.0.0.1');
 
 /*
 http.createServer(function(req, res) {
@@ -80,4 +57,4 @@ http.createServer(function(req, res) {
 }).listen('2000', '127.0.0.1');
 */
 
-console.log('ok');
+console.log('Server running at 127.0.0.1:3000');
