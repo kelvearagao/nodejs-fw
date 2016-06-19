@@ -1,1 +1,6 @@
-# nodejs-fw
+## nodejs-fw
+
+## Running tests
+```bash
+$ npm test
+```
